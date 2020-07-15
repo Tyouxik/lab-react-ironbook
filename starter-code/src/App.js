@@ -8,25 +8,11 @@ class App extends Component {
   state = {
           users,
           search:'',
-          student: true,
-          teacher: true
+          student: false,
+          teacher: false
       }
 
-    // handleChange = (event) => {
-    //   
-    //   console.log(this.state)
-    //   .filter(user => {
-    //     // console.log(user.firstName.toLowerCase().includes(this.state.search))
-    //     user.firstName.toLowerCase().includes(this.state.search.toLowerCase())
-    //   })
-    //   // || user.lastName.toLowerCase().includes(value)
-    //   console.log(filteredUsers)
-    //   this.setState({
-    //     users: filteredUsers,
-    //     search: value
     
-    //   })
-    // }
 
     editSearch = (event) => {
       const {value} = event.target
@@ -37,12 +23,12 @@ class App extends Component {
 
     handleCheckbox = (event) => {
     const id = event.target.id;
-    const value = event.target.checked
+    const isChecked = event.target.checked;
 
-    this.setState({
-      [id]: value
-    })
-    console.log('student', this.state.student)
+    this.setState((state,props)=> ({
+      [id]: isChecked
+    }))
+    console.log(id, isChecked)
     }
     
 
@@ -88,7 +74,8 @@ class App extends Component {
         />
 
         <label htmlFor="teacher">Teacher</label>
-        <input type="checkbox"
+        <input 
+        type="checkbox"
         id='teacher'
         checked={this.state.teacher}
         onChange={this.handleCheckbox}
